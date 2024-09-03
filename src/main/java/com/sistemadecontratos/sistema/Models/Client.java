@@ -24,6 +24,13 @@ public class Client {
 
     public Client(){}
 
+    public Client(String name, String description, Integer contractsExecuted, Double valuesInContracts) {
+        this.name = name;
+        this.description = description;
+        this.contractsExecuted = contractsExecuted;
+        this.valuesInContracts = valuesInContracts;
+    }
+
     public Client(String name, String description) {
         this.name = name;
         this.description = description;

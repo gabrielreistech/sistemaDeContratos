@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClientService {
@@ -15,6 +16,7 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
+    @Transactional
     public ClientDtoRespostaObjeto save(ClientDto clientDto){
         Client client = new Client();
         client.setName(clientDto.getName());
@@ -34,11 +36,19 @@ public class ClientService {
         return new ClientDtoRespostaObjeto(clientSave);
     }
 
+    @Transactional
     public Page<ClientDtoRespostaObjeto> findAll(Pageable pageable){
         Page<Client> page = this.clientRepository.findAll(pageable);
         return page.map(ClientDtoRespostaObjeto::new);
     }
 
+    @Transactional
+    public ClientDtoRespostaObjeto findById(Long id){
+        Client client = this.clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado."));
+        return new ClientDtoRespostaObjeto(client);
+    }
+
+    @Transactional
     public void deleteById(Long id){
         Client client = this.clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não localizado para ser deletado."));
         this.clientRepository.deleteById(id);
