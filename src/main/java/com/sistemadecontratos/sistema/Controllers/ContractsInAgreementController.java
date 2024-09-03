@@ -2,6 +2,7 @@ package com.sistemadecontratos.sistema.Controllers;
 
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDto;
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDtoRespostaObjeto;
+import com.sistemadecontratos.sistema.Dtos.CurrentContractsDto;
 import com.sistemadecontratos.sistema.Services.ContractInAgreementService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -51,6 +52,14 @@ public class ContractsInAgreementController {
         return ResponseEntity.ok(result);
     }
 
+    @Operation(summary = "Busca um contrato em acordo por ID.", description = "Método que busca pelo ID, um contrato em acordo.")
+    @GetMapping("/{id}")
+    public ResponseEntity<ContractsInAgreementDtoRespostaObjeto> findById(@PathVariable Long id){
+        ContractsInAgreementDtoRespostaObjeto contractById = this.contractInAgreementService.findById(id);
+        return ResponseEntity.ok(contractById);
+    }
+
+    @Operation(summary = "Deleta um contrato em acordo pelo seu ID.", description = "Método que deleta um contrato em acordo pelo seu ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         this.contractInAgreementService.deleteById(id);

@@ -55,13 +55,14 @@ public class ClientController {
         return ResponseEntity.ok(result);
     }
 
+    @Operation(summary = "Busca um cliente por ID.", description = "Método que busca um cliente pelo seu ID.")
     @GetMapping("/{id}")
     public ResponseEntity<ClientDtoRespostaObjeto> findById(@PathVariable Long id){
         ClientDtoRespostaObjeto result = this.clientService.findById(id);
         return ResponseEntity.ok(result);
     }
 
-    @Operation(summary = "Deleta um cliente.", description = "Método que delete um cliente pelo ID.")
+    @Operation(summary = "Deleta um cliente por ID.", description = "Método que delete um cliente pelo ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         this.clientService.deleteById(id);

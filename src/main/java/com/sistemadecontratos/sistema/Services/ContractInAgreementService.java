@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -22,6 +23,7 @@ public class ContractInAgreementService {
     @Autowired
     ContractsInAgreementRepository contractsInAgreementRepository;
 
+    @Transactional
     public ContractsInAgreementDtoRespostaObjeto save(ContractsInAgreementDto contractsInAgreementDto){
         Client clientExist = this.clientRepository.findById(contractsInAgreementDto.getClient()).orElseThrow(() -> new RuntimeException("Id de cliente não localizado."));
 
@@ -42,11 +44,20 @@ public class ContractInAgreementService {
         return new ContractsInAgreementDtoRespostaObjeto(contractsInAgreementSave);
     }
 
+    @Transactional
     public Page<ContractsInAgreementDtoRespostaObjeto> findAll(Pageable pageable){
         Page<ContractsInAgreement> page = this.contractsInAgreementRepository.findAll(pageable);
         return page.map(ContractsInAgreementDtoRespostaObjeto::new);
     }
 
+    @Transactional
+    public ContractsInAgreementDtoRespostaObjeto findById(Long id){
+        ContractsInAgreement contractsInAgreement = this.contractsInAgreementRepository.findById(id).orElseThrow(() -> new RuntimeException("Contrato em acordo não localizado."));
+        return new ContractsInAgreementDtoRespostaObjeto(contractsInAgreement);
+    }
+
+
+    @Transactional
     public void deleteById(Long id){
         ContractsInAgreement contract = this.contractsInAgreementRepository.findById(id).orElseThrow(() -> new RuntimeException("Contrato em acordo não foi localizado para ser deletado."));
         this.contractsInAgreementRepository.deleteById(contract.getId());
