@@ -1,7 +1,10 @@
 package com.sistemadecontratos.sistema.Controllers;
 
 import com.sistemadecontratos.sistema.Dtos.CurrentContractsDto;
+import com.sistemadecontratos.sistema.Dtos.CurrentContractsDtoRespostaObjeto;
+import com.sistemadecontratos.sistema.Dtos.SucessyContractsDtoRespostaObjeto;
 import com.sistemadecontratos.sistema.Services.CurrentContractsService;
+import com.sistemadecontratos.sistema.Services.SucessyContractsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Min;
@@ -21,12 +24,17 @@ public class CurrentContractsController {
     @Autowired
     CurrentContractsService currentContractsService;
 
-    @Operation(summary = "Adicionar um contrato em acordo dentro de um contrato atual", description = "Método que busca um Contrato em Acordo e põe dentro de um Contrato Atual.")
+    @Autowired
+    SucessyContractsService sucessyContractsService;
+
+    @Operation(summary = "Adicionar um contrato atual em um contrato de sucesso.", description = "Método que adicionar um Contrato Atual em um Contrato de Sucesso.")
     @PostMapping
-    public ResponseEntity<CurrentContractsDto> addContract(@RequestParam Long id){
-        CurrentContractsDto currentContractsDto = this.currentContractsService.addContract(id);
-        return ResponseEntity.ok(currentContractsDto);
+    public ResponseEntity<SucessyContractsDtoRespostaObjeto> insertInSucessyContracts(Long id){
+         SucessyContractsDtoRespostaObjeto sucessyContract = this.sucessyContractsService.insertContract(id);
+         return ResponseEntity.ok(sucessyContract);
     }
+
+
 
     @Operation(summary = "Buscar todos Contratos Atuais.", description = "Método que busca todos os Contratos Atuais.")
     @GetMapping

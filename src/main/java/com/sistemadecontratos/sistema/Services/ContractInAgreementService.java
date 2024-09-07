@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Service
 public class ContractInAgreementService {
@@ -25,7 +24,7 @@ public class ContractInAgreementService {
     ContractsInAgreementRepository contractsInAgreementRepository;
 
     @Transactional
-    public ContractsInAgreementDtoRespostaObjeto save(ContractsInAgreementDto contractsInAgreementDto){
+    public ContractsInAgreementDtoRespostaObjeto insert(ContractsInAgreementDto contractsInAgreementDto){
         Client clientExist = this.clientRepository.findById(contractsInAgreementDto.getClient()).orElseThrow(() -> new RuntimeException("Id de cliente não localizado."));
 
         ContractsInAgreement contractsInAgreement = new ContractsInAgreement();

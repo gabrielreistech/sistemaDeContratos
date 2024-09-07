@@ -34,8 +34,8 @@ public class ClientController {
             @ApiResponse(responseCode = "200", description = "Cliente buscado com sucesso."),
     })
     @PostMapping
-    public ResponseEntity<ClientDtoRespostaObjeto> save(@Valid @RequestBody ClientDto clientDto){
-        ClientDtoRespostaObjeto clientDtoRespostaObjeto = this.clientService.save(clientDto);
+    public ResponseEntity<ClientDtoRespostaObjeto> insert(@Valid @RequestBody ClientDto clientDto){
+        ClientDtoRespostaObjeto clientDtoRespostaObjeto = this.clientService.create(clientDto);
         URI locate = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(clientDtoRespostaObjeto.getId()).toUri();
         return ResponseEntity.created(locate).body(clientDtoRespostaObjeto);
     }

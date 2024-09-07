@@ -1,9 +1,11 @@
 package com.sistemadecontratos.sistema.Controllers;
 
+import com.sistemadecontratos.sistema.Beans.MethodsBeans;
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDto;
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDtoRespostaObjeto;
-import com.sistemadecontratos.sistema.Dtos.CurrentContractsDto;
+import com.sistemadecontratos.sistema.Dtos.CurrentContractsDtoRespostaObjeto;
 import com.sistemadecontratos.sistema.Services.ContractInAgreementService;
+import com.sistemadecontratos.sistema.Services.CurrentContractsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -29,14 +31,24 @@ public class ContractsInAgreementController {
     @Autowired
     ContractInAgreementService contractInAgreementService;
 
+    @Autowired
+    CurrentContractsService currentContractsService;
+
+    @Operation(summary = "Adicionar um contrato em acordo em contratos atuais.", description = "Método que adiciona um contrato em acordo em contratos atuais.")
+    @PostMapping("/insert")
+    public ResponseEntity<CurrentContractsDtoRespostaObjeto> insertInCurrentContracts(Long id){
+        CurrentContractsDtoRespostaObjeto currentContracts = this.currentContractsService.insertContract(id);
+        return ResponseEntity.ok(currentContracts);
+    }
+
     @Operation(summary = "Salva um novo contrato.", description = "Esse método ele salva um novo contrato no banco de dados Contratos.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Contrato em acordo criado com sucesso."),
             @ApiResponse(responseCode = "409", description = "Por algum mótivo seu contrato em acordo não conseguiu ser criado no sistema")
     })
     @PostMapping
-    public ResponseEntity<ContractsInAgreementDtoRespostaObjeto> save(@Valid @RequestBody ContractsInAgreementDto contractsInAgreementDto){
-        ContractsInAgreementDtoRespostaObjeto contractsInAgreementDtoRespostaObjeto = this.contractInAgreementService.save(contractsInAgreementDto);
+    public ResponseEntity<ContractsInAgreementDtoRespostaObjeto> create(@Valid @RequestBody ContractsInAgreementDto contractsInAgreementDto){
+        ContractsInAgreementDtoRespostaObjeto contractsInAgreementDtoRespostaObjeto = this.contractInAgreementService.insert(contractsInAgreementDto);
         URI locate = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contractsInAgreementDtoRespostaObjeto.getId()).toUri();
         return ResponseEntity.created(locate).body(contractsInAgreementDtoRespostaObjeto);
     }

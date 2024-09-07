@@ -6,9 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class CurrentContractsDto {
+public class CurrentContractsDtoRespostaObjeto {
 
     @NotNull
     private Long id;
@@ -20,7 +19,7 @@ public class CurrentContractsDto {
     private String description;
 
     @NotNull
-    private Long client;
+    private Client client;
 
     @NotNull
     private Double price;
@@ -31,14 +30,16 @@ public class CurrentContractsDto {
     @NotNull
     private LocalDate contractEnd;
 
-    public CurrentContractsDto(CurrentContracts currentContracts){
+    public CurrentContractsDtoRespostaObjeto(){}
+
+    public CurrentContractsDtoRespostaObjeto(CurrentContracts currentContracts){
         id = currentContracts.getId();
         name = currentContracts.getName();
         description = currentContracts.getDescription();
-        client = currentContracts.getClient().getId();
+        client = currentContracts.getClient();
         price = currentContracts.getPrice();
         contractDay = currentContracts.getContractDay();
-        contractEnd = currentContracts.getContractEnd();
+        contractDay = currentContracts.getContractDay();
     }
 
     public @NotNull Long getId() {
@@ -65,11 +66,11 @@ public class CurrentContractsDto {
         this.description = description;
     }
 
-    public @NotNull Long getClient() {
+    public @NotNull Client getClient() {
         return client;
     }
 
-    public void setClient(@NotNull Long client) {
+    public void setClient(@NotNull Client client) {
         this.client = client;
     }
 

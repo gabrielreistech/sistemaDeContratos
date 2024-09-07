@@ -1,92 +1,22 @@
 package com.sistemadecontratos.sistema.Models;
 
+import com.sistemadecontratos.sistema.Models.Abstract.Contract;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Contratos_De_Sucesso")
-public class SucessyContracts {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "Nome", nullable = true)
-    private String name;
-
-    @Column(name = "Descrição", nullable = true)
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(nullable = true, unique = true)
-    private Client client;
-
-    @Column(name = "Preço")
-    private Double price;
-
-    @Column(name = "Início_Do_Contrato")
-    private LocalDate contractDay;
-
-    @Column(name = "Fim_Do_Contrato")
-    private LocalDate contractEnd;
+public class SucessyContracts extends Contract {
 
     public SucessyContracts(){}
 
-    public Long getId() {
-        return id;
+    public SucessyContracts(CurrentContracts currentContracts){
+        this.setId(currentContracts.getId());
+        this.setName(currentContracts.getName());
+        this.setDescription(currentContracts.getDescription());
+        this.setPrice(currentContracts.getPrice());
+        this.setClient(currentContracts.getClient());
+        this.setContractDay(currentContracts.getContractDay());
+        this.setContractEnd(currentContracts.getContractEnd());
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public LocalDate getContractDay() {
-        return contractDay;
-    }
-
-    public void setContractDay(LocalDate contractDay) {
-        this.contractDay = contractDay;
-    }
-
-    public LocalDate getContractEnd() {
-        return contractEnd;
-    }
-
-    public void setContractEnd(LocalDate contractEnd) {
-        this.contractEnd = contractEnd;
-    }
 }
