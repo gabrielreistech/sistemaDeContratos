@@ -1,13 +1,12 @@
-package com.sistemadecontratos.sistema.Models.ModelsContracts;
+package com.sistemadecontratos.sistema.Models;
 
-import com.sistemadecontratos.sistema.Models.Client;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Contratos_Em_Acordo")
-public class ContractsInAgreement {
+@Table(name = "Contratos_Cancelados")
+public class CanceledContracts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +19,7 @@ public class ContractsInAgreement {
     private String description;
 
     @ManyToOne
-    @JoinColumn(nullable = true)
+    @JoinColumn(nullable = true, unique = true)
     private Client client;
 
     @Column(name = "Preço")
@@ -32,7 +31,7 @@ public class ContractsInAgreement {
     @Column(name = "Fim_Do_Contrato")
     private LocalDateTime contractEnd;
 
-   public ContractsInAgreement(){}
+    public CanceledContracts(){}
 
     public Long getId() {
         return id;
@@ -66,20 +65,20 @@ public class ContractsInAgreement {
         this.client = client;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public LocalDateTime getContractDay() {
         return contractDay;
     }
 
     public void setContractDay(LocalDateTime contractDay) {
         this.contractDay = contractDay;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public LocalDateTime getContractEnd() {

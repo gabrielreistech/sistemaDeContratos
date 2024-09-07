@@ -2,8 +2,7 @@ package com.sistemadecontratos.sistema.Beans;
 
 import com.sistemadecontratos.sistema.Dtos.CurrentContractsDto;
 import com.sistemadecontratos.sistema.Models.Client;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.ContractsInAgreement;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.CurrentContracts;
+import com.sistemadecontratos.sistema.Models.ContractsInAgreement;
 import com.sistemadecontratos.sistema.Repositorys.ClientRepository;
 import com.sistemadecontratos.sistema.Repositorys.ContractsInAgreementRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.mockito.Mockito.when;
@@ -50,8 +49,8 @@ class MethodsBeansTest {
         contractsInAgreement.setClient(client);
         contractsInAgreement.setPrice(100.00);
         contractsInAgreement.setDescription("Description test.");
-        contractsInAgreement.setContractDay(LocalDateTime.now());
-        contractsInAgreement.setContractEnd(LocalDateTime.now());
+        contractsInAgreement.setContractDay(LocalDate.now());
+        contractsInAgreement.setContractEnd(LocalDate.now());
         contractsInAgreement.setName("Teste");
         this.contractsInAgreementRepository.save(contractsInAgreement);
     }

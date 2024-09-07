@@ -1,13 +1,13 @@
-package com.sistemadecontratos.sistema.Models.ModelsContracts;
+package com.sistemadecontratos.sistema.Models;
 
-import com.sistemadecontratos.sistema.Models.Client;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Contratos_Atuais")
-public class CurrentContracts {
+@Table(name = "Contratos_De_Sucesso")
+public class SucessyContracts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,29 +20,19 @@ public class CurrentContracts {
     private String description;
 
     @ManyToOne
-    @JoinColumn(nullable = true)
+    @JoinColumn(nullable = true, unique = true)
     private Client client;
 
     @Column(name = "Preço")
     private Double price;
 
     @Column(name = "Início_Do_Contrato")
-    private LocalDateTime contractDay;
+    private LocalDate contractDay;
 
     @Column(name = "Fim_Do_Contrato")
-    private LocalDateTime contractEnd;
+    private LocalDate contractEnd;
 
-    public CurrentContracts(){}
-
-    public CurrentContracts(ContractsInAgreement contractsInAgreement){
-        id = contractsInAgreement.getId();
-        name = contractsInAgreement.getName();
-        description = contractsInAgreement.getDescription();
-        client = contractsInAgreement.getClient();
-        price = contractsInAgreement.getPrice();
-        contractDay = contractsInAgreement.getContractDay();
-        contractEnd = contractsInAgreement.getContractEnd();
-    }
+    public SucessyContracts(){}
 
     public Long getId() {
         return id;
@@ -84,19 +74,19 @@ public class CurrentContracts {
         this.price = price;
     }
 
-    public LocalDateTime getContractDay() {
+    public LocalDate getContractDay() {
         return contractDay;
     }
 
-    public void setContractDay(LocalDateTime contractDay) {
+    public void setContractDay(LocalDate contractDay) {
         this.contractDay = contractDay;
     }
 
-    public LocalDateTime getContractEnd() {
+    public LocalDate getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(LocalDateTime contractEnd) {
+    public void setContractEnd(LocalDate contractEnd) {
         this.contractEnd = contractEnd;
     }
 }

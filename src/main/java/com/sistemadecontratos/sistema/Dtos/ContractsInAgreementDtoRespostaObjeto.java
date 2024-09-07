@@ -1,9 +1,9 @@
 package com.sistemadecontratos.sistema.Dtos;
 
 import com.sistemadecontratos.sistema.Models.Client;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.ContractsInAgreement;
+import com.sistemadecontratos.sistema.Models.ContractsInAgreement;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ContractsInAgreementDtoRespostaObjeto {
 
@@ -17,9 +17,9 @@ public class ContractsInAgreementDtoRespostaObjeto {
 
     private Double price;
 
-    private LocalDateTime contractDay;
+    private LocalDate contractDay;
 
-    private LocalDateTime contractEnd;
+    private LocalDate contractEnd;
 
     public ContractsInAgreementDtoRespostaObjeto(ContractsInAgreement contractsInAgreement){
         id = contractsInAgreement.getId();
@@ -71,19 +71,19 @@ public class ContractsInAgreementDtoRespostaObjeto {
         this.price = price;
     }
 
-    public LocalDateTime getContractDay() {
+    public LocalDate getContractDay() {
         return contractDay;
     }
 
-    public void setContractDay(LocalDateTime contractDay) {
+    public void setContractDay(LocalDate contractDay) {
         this.contractDay = contractDay;
     }
 
-    public LocalDateTime getContractEnd() {
+    public LocalDate getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(LocalDateTime contractEnd) {
+    public void setContractEnd(LocalDate contractEnd) {
         this.contractEnd = contractEnd;
     }
 }

@@ -3,7 +3,7 @@ package com.sistemadecontratos.sistema.Services;
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDto;
 import com.sistemadecontratos.sistema.Dtos.ContractsInAgreementDtoRespostaObjeto;
 import com.sistemadecontratos.sistema.Models.Client;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.ContractsInAgreement;
+import com.sistemadecontratos.sistema.Models.ContractsInAgreement;
 import com.sistemadecontratos.sistema.Repositorys.ClientRepository;
 import com.sistemadecontratos.sistema.Repositorys.ContractsInAgreementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -28,7 +29,7 @@ public class ContractInAgreementService {
         Client clientExist = this.clientRepository.findById(contractsInAgreementDto.getClient()).orElseThrow(() -> new RuntimeException("Id de cliente não localizado."));
 
         ContractsInAgreement contractsInAgreement = new ContractsInAgreement();
-        contractsInAgreement.setContractDay(LocalDateTime.now());
+        contractsInAgreement.setContractDay(LocalDate.now());
         contractsInAgreement.setClient(clientExist);
         contractsInAgreement.setDescription(contractsInAgreementDto.getDescription());
         contractsInAgreement.setName(contractsInAgreementDto.getName());

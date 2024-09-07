@@ -1,11 +1,11 @@
 package com.sistemadecontratos.sistema.Dtos;
 
 import com.sistemadecontratos.sistema.Models.Client;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.CurrentContracts;
-import jakarta.persistence.*;
+import com.sistemadecontratos.sistema.Models.CurrentContracts;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CurrentContractsDto {
@@ -26,10 +26,10 @@ public class CurrentContractsDto {
     private Double price;
 
     @NotNull
-    private LocalDateTime contractDay;
+    private LocalDate contractDay;
 
     @NotNull
-    private LocalDateTime contractEnd;
+    private LocalDate contractEnd;
 
     public CurrentContractsDto(CurrentContracts currentContracts){
         id = currentContracts.getId();
@@ -81,19 +81,19 @@ public class CurrentContractsDto {
         this.price = price;
     }
 
-    public LocalDateTime getContractDay() {
+    public LocalDate getContractDay() {
         return contractDay;
     }
 
-    public void setContractDay(LocalDateTime contractDay) {
+    public void setContractDay(LocalDate contractDay) {
         this.contractDay = contractDay;
     }
 
-    public LocalDateTime getContractEnd() {
+    public LocalDate getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(LocalDateTime contractEnd) {
+    public void setContractEnd(LocalDate contractEnd) {
         this.contractEnd = contractEnd;
     }
 }

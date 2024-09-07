@@ -1,13 +1,11 @@
-package com.sistemadecontratos.sistema.Models.ModelsContracts;
+package com.sistemadecontratos.sistema.Models;
 
-import com.sistemadecontratos.sistema.Models.Client;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Contratos_Cancelados")
-public class CanceledContracts {
+@Table(name = "Contratos_Em_Acordo")
+public class ContractsInAgreement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,19 +18,19 @@ public class CanceledContracts {
     private String description;
 
     @ManyToOne
-    @JoinColumn(nullable = true, unique = true)
+    @JoinColumn(nullable = true)
     private Client client;
 
     @Column(name = "Preço")
     private Double price;
 
     @Column(name = "Início_Do_Contrato")
-    private LocalDateTime contractDay;
+    private LocalDate contractDay;
 
     @Column(name = "Fim_Do_Contrato")
-    private LocalDateTime contractEnd;
+    private LocalDate contractEnd;
 
-    public CanceledContracts(){}
+   public ContractsInAgreement(){}
 
     public Long getId() {
         return id;
@@ -66,14 +64,6 @@ public class CanceledContracts {
         this.client = client;
     }
 
-    public LocalDateTime getContractDay() {
-        return contractDay;
-    }
-
-    public void setContractDay(LocalDateTime contractDay) {
-        this.contractDay = contractDay;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -82,11 +72,19 @@ public class CanceledContracts {
         this.price = price;
     }
 
-    public LocalDateTime getContractEnd() {
+    public LocalDate getContractDay() {
+        return contractDay;
+    }
+
+    public void setContractDay(LocalDate contractDay) {
+        this.contractDay = contractDay;
+    }
+
+    public LocalDate getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(LocalDateTime contractEnd) {
+    public void setContractEnd(LocalDate contractEnd) {
         this.contractEnd = contractEnd;
     }
 }

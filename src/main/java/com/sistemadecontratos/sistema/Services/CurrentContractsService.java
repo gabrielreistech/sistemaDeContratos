@@ -2,8 +2,8 @@ package com.sistemadecontratos.sistema.Services;
 
 import com.sistemadecontratos.sistema.Beans.MethodsBeans;
 import com.sistemadecontratos.sistema.Dtos.CurrentContractsDto;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.ContractsInAgreement;
-import com.sistemadecontratos.sistema.Models.ModelsContracts.CurrentContracts;
+import com.sistemadecontratos.sistema.Models.ContractsInAgreement;
+import com.sistemadecontratos.sistema.Models.CurrentContracts;
 import com.sistemadecontratos.sistema.Repositorys.ContractsInAgreementRepository;
 import com.sistemadecontratos.sistema.Repositorys.CurrentContractsRepository;
 import org.springframework.beans.factory.annotation.Autowired;

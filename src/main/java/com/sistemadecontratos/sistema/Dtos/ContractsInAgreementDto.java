@@ -1,10 +1,9 @@
 package com.sistemadecontratos.sistema.Dtos;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ContractsInAgreementDto {
 
@@ -19,9 +18,9 @@ public class ContractsInAgreementDto {
 
     private Double price;
 
-    private LocalDateTime contractDay;
+    private LocalDate contractDay;
 
-    private LocalDateTime contractEnd;
+    private LocalDate contractEnd;
 
     ContractsInAgreementDto(){}
 
@@ -31,7 +30,7 @@ public class ContractsInAgreementDto {
         this.client = client;
     }
 
-    public ContractsInAgreementDto(String name, String description, Long client, Double price, LocalDateTime contractDay, LocalDateTime contractEnd) {
+    public ContractsInAgreementDto(String name, String description, Long client, Double price, LocalDate contractDay, LocalDate contractEnd) {
         this.name = name;
         this.description = description;
         this.client = client;
@@ -72,19 +71,19 @@ public class ContractsInAgreementDto {
         this.price = price;
     }
 
-    public LocalDateTime getContractDay() {
+    public LocalDate getContractDay() {
         return contractDay;
     }
 
-    public void setContractDay(LocalDateTime contractDay) {
+    public void setContractDay(LocalDate contractDay) {
         this.contractDay = contractDay;
     }
 
-    public LocalDateTime getContractEnd() {
+    public LocalDate getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(LocalDateTime contractEnd) {
+    public void setContractEnd(LocalDate contractEnd) {
         this.contractEnd = contractEnd;
     }
 }
